@@ -12,9 +12,6 @@ public class Conexion {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mensajes_app_platzi",
                                              "root",
                                              "");
-            if (con!=null){
-                System.out.println("conexion exitosa");
-            }
 
         }catch(SQLException e){
             System.out.println(e);
