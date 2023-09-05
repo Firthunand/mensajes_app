@@ -39,14 +39,5 @@ public class Main {
             }
         }while (op!=5);
 
-        Conexion con= new Conexion();
-
-        try(Connection cnx = con.getConnection()){
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
-
-
         }
     }
