@@ -2,6 +2,7 @@ package org.example;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //Aqui estara la logica de la conexion es la capa intermedia entre la aplicacion y la base de datos
@@ -31,6 +32,26 @@ public class MensajesDAO {
     }
 
     public static void leerMensajeDb(){
+        Conexion dbConnect= new Conexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try(Connection conexion = dbConnect.getConnection()){
+            String query = "select * from mensajes";
+            ps=conexion.prepareStatement(query);
+            rs=ps.executeQuery();
+
+            while(rs.next()){
+                System.out.println("ID: "+rs.getInt("id_mensaje"));
+                System.out.println("Mensaje: "+rs.getString("mensaje"));
+                System.out.println("Autor: "+rs.getString("autor_mensaje"));
+                System.out.println("Fecha: "+rs.getString("fecha_mensaje"));
+                System.out.println("");
+            }
+        }catch(SQLException e){
+            System.out.println("no se pudo traer el mensaje");
+            System.out.println(e);
+        }
 
     }
 
